@@ -11,6 +11,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -194,14 +195,19 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
-            
-            case PICKUP:
-                 pickUpItem(command);
+                
+            /**
+                case PICKUP:
+                 pickUp(command);
                  break;
-            
+            */
             case TALK:
                  talkTo(command);
                  break;
+
+            case LOOK:
+                lookItem(command);
+                break;
         }
         return wantToQuit;
     }
@@ -262,11 +268,23 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
+
         private void talkTo(Command command)
         {
           if(!command.hasSecondWord())
           {
              System.out.println("WHOOO TF ARE YOU TRYING TO TALK TO YOU PSYCHOPATH"); 
-          }
+          }  
+        }
+          /**
+         * "Look" was entered.
+         */
+        private void lookItem(Command command)
+        {   
+        if(command.hasSecondWord()){
+            System.out.println("wtf?");
+            return;
+        }
+        
     }
   }
