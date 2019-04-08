@@ -11,21 +11,13 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Items foundItems;    
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
         createRooms();
-        createItems();
         parser = new Parser();
-    }
-    private void createItems()
-    {
-     Items redpill;
-     redpill = new Items("");
-     
     }
     /**
      * Create all the rooms and link their exits together.
@@ -184,8 +176,6 @@ public class Game
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
-        boolean wantToPickUp = false;
-
         CommandWord commandWord = command.getCommandWord();
 
         switch (commandWord) {
@@ -204,8 +194,13 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            
             case PICKUP:
                  pickUpItem(command);
+                 break;
+            
+            case TALK:
+                 talkTo(command);
                  break;
         }
         return wantToQuit;
@@ -267,24 +262,11 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    private void pickUpItem(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Pick up what?");
-            return;
-        }
-
-        String use = command.getSecondWord();
-        
-        Items searchItem = foundItems.getItems(use);
-        
-        if (searchItem == null) {
-            System.out.println("There is nothing to pick up!");
-        }
-        else {
-            foundItems = searchItem;
-            System.out.println(foundItems.getLongDescription());
-        }
+        private void talkTo(Command command)
+        {
+          if(!command.hasSecondWord())
+          {
+             System.out.println("WHOOO TF ARE YOU TRYING TO TALK TO YOU PSYCHOPATH"); 
+          }
     }
   }

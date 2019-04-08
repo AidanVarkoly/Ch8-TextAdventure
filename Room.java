@@ -1,5 +1,6 @@
 import java.util.Set;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -20,7 +21,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-
+    private ArrayList<People> people;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -32,7 +33,11 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-
+    public void People(String Description)
+    {
+     this.description = description3;
+     people = ArrayList<People> people;
+    }
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -87,6 +92,10 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+    public Room getPeople(People people)
+    {
+        return People.get(peopleDesc)
     }
 }
 
