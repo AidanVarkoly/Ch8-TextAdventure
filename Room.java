@@ -1,26 +1,28 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
  *
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
+ * This class is part of the "The HamFather" application. 
  *
  * A "Room" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2011.08.10
+ * @author Isabella Dela Pena and Aidan Varkoly
+ * @version 2019.04.08
  */
 
 public class Room 
 {
     private String description;
-    private HashMap<String, Room> exits;        // stores exits of this room.
-
+    private HashMap<String, Room> exits;   
+    // stores exits of this room.
+    private ArrayList<Item> items = null;
+  
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -32,7 +34,7 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -42,7 +44,7 @@ public class Room
     {
         exits.put(direction, neighbor);
     }
-
+    
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -88,5 +90,7 @@ public class Room
     {
         return exits.get(direction);
     }
+    
 }
+
 

@@ -10,22 +10,14 @@
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
-    private Items foundItems;    
+    private Room currentRoom;   
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
         createRooms();
-        createItems();
         parser = new Parser();
-    }
-    private void createItems()
-    {
-     Items redpill;
-     redpill = new Items("");
-     
     }
     /**
      * Create all the rooms and link their exits together.
@@ -204,9 +196,12 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
-            case PICKUP:
-                 pickUpItem(command);
-                 break;
+                
+            case LOOK:
+                lookItem(command);
+                break;
+                
+            
         }
         return wantToQuit;
     }
@@ -267,24 +262,18 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    private void pickUpItem(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Pick up what?");
+    
+    /**
+     * "Look" was entered.
+     */
+    private void lookItem(Command command)
+    {   
+        if(command.hasSecondWord()){
+            System.out.println("wtf?");
             return;
         }
-
-        String use = command.getSecondWord();
         
-        Items searchItem = foundItems.getItems(use);
-        
-        if (searchItem == null) {
-            System.out.println("There is nothing to pick up!");
-        }
-        else {
-            foundItems = searchItem;
-            System.out.println(foundItems.getLongDescription());
-        }
     }
+    
+  
   }
