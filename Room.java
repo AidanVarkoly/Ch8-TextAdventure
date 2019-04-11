@@ -21,9 +21,9 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private ArrayList<People> people;  
+    private ArrayList<Item> Items;
+    private ArrayList<People> Person;
     // stores exits of this room.
-    private ArrayList<Item> items = null;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -34,9 +34,8 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<String, Room>();
-    }
-    public void People(String Description)
-    {
+        Items = new ArrayList<Item>();
+        Person = new ArrayList<People>();
     }
     /**
      * Define an exit from this room.
@@ -47,7 +46,14 @@ public class Room
     {
         exits.put(direction, neighbor);
     }
-    
+    public void addItem(Item aItem)
+    {
+        Items.add(aItem);
+    }
+    public void addPeople(People aPerson)
+    {
+        Person.add(aPerson);   
+    }
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -65,9 +71,8 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+      return "You are " + description + ".\n" + getExitString();
     }
-
     /**
      * Return a string describing the room's exits, for example
      * "Exits: north west".
@@ -82,7 +87,6 @@ public class Room
         }
         return returnString;
     }
-
     /**
      * Return the room that is reached if we go from this room in direction
      * "direction". If there is no room in that direction, return null.
@@ -93,12 +97,6 @@ public class Room
     {
         return exits.get(direction);
     }
-    /**
-    public Room getPeople(People people)
-    {
-      
-    }
-    */
 }
 
 

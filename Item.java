@@ -1,6 +1,3 @@
-import java.util.Set;
-import java.util.ArrayList;
-import java.util.Iterator;
 /**
  * Write a description of class Item here.
  *
@@ -9,23 +6,20 @@ import java.util.Iterator;
  */
 public class Item
 {
-    // instance variables - replace the example below with your own
     private String description2;
-    private ArrayList<Item> items = null;
-    
-    public Item(String description)
+    private String name;
+    public Item(String item, String description)
     {
-        this.description2 = description2;
-        this.items = new ArrayList<Item>();
+        this.name = item;
+        this.description2 = description;
     }
-    
-    
-    public void addItem(Item item)
+    public void setItem(String item)
     {
-        items.add(item);
+        name = item;
     }
-    
-    
-    
+    public String getItem()
+    {
+        return name;
+    }
 }    
    
