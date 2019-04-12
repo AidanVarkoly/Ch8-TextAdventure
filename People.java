@@ -9,10 +9,10 @@ public class People
 {
     // instance variables - replace the example below with your own
     private String description3;
-    private String Name;    
+    private static String Name;    
     /**
      * Constructor for objects of class People     */
-    public People(String Person, String description)
+    public People(String Person, String description3)
     {
         this.description3 = description3;
         this.Name = Person;

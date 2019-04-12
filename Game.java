@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Scanner;
 /**
 The HamFather
 * This game is about you, a hamster, who tries to escape his domestic life 
@@ -12,9 +13,9 @@ The HamFather
   {
      private Parser parser;
      private static Room currentRoom;
-     private boolean searched = false;
      private Item itemInRoom1;
      private People personInRoom1;
+     private String currentRoom1;
     /**
       * Create the game and initialise its internal map.
       */
@@ -139,15 +140,16 @@ The HamFather
         redpill = new Item("RedPill", "RedPill in the Medicine Cabinet");
         cage.addItem(redpill);
         
-        People James, Mary;
-        Mary = new People("Mary", "A nice Woman");
+        People James; 
+        People Mary;
         James = new People("James", "Dude standing in the corner");
+        Mary = new People("Mary", "A nice Woman");
         
         cage.addPeople(James);
         ratCage.addPeople(Mary);
         currentRoom = cage;  // start game in the cage
        }
-    /**
+       /**
       *  Main play routine.  Loops until end of play.
       */
         public void play() 
@@ -287,13 +289,13 @@ The HamFather
      * When "Talk" "Person" is entered it sets the value of
      * spoke to true making getLongCommand() print.
      */
-       private void talkTo(Command command)
+       private static void talkTo(Command command)
       {
        if(!command.hasSecondWord())
        {
-         System.out.println("WHOOO TF ARE YOU TRYING TO TALK TO YOU PSYCHOPATH"); 
+         Room.spoke = true;
+         System.out.println(currentRoom.getLongDescription());
        }
-       
       }
      /**
      * When "look" "Room" is entered it sets the value of
@@ -303,7 +305,8 @@ The HamFather
       {       
        if(!command.hasSecondWord())
        {
-         System.out.println("Where are you trying to look?");
-       }   
+          Room.searched = true;
+          System.out.println(currentRoom.getLongDescription());
+       }
       }
   }

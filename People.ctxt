@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=People
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ People\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=Person\ description
+comment1.params=Person\ description3
 comment1.target=People(java.lang.String,\ java.lang.String)
 comment1.text=\r\nConstructor\ for\ objects\ of\ class\ People
 comment2.params=Person

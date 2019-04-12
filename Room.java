@@ -25,8 +25,8 @@ public class Room
     private ArrayList<People> Person;
     private String itemInRoom;
     private static String itemInRoomDesc;
-    private boolean searched = false;
-    private boolean spoke = false;
+    public static boolean searched = false;
+    public static boolean spoke = false;
     // stores exits of this room.
     /**
      * Create a room described "description". Initially, it has
@@ -66,7 +66,6 @@ public class Room
     {
         return description;
     }
-
     /**
      * Return a description of the room in the form:
      *     You are in the kitchen.
@@ -90,20 +89,20 @@ public class Room
          temp += "There is nothing else here.\n";    
        }
      }
-      if (spoke)
+     if (spoke)
       {
         if (Person.size() > 0)
         {
           for (int p=0; p<Person.size(); p++) {
-              temp += "There is " + Person.get(p).getPeopleDesc() + "here\n"; 
+              temp += Person.get(p).getPeopleDesc() + "\n"; 
           }
         }
         else 
         {
          temp += "There is no'one in here.\n";   
-      }
+        }
      }
-      return temp;
+        return temp;
     }    
     /**
      * Return a string describing the room's exits, for example
