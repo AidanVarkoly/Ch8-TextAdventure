@@ -7,4 +7,6 @@ comment2.params=item
 comment2.target=void\ setItem(java.lang.String)
 comment3.params=
 comment3.target=java.lang.String\ getItem()
-numComments=4
+comment4.params=
+comment4.target=java.lang.String\ getItemDescription()
+numComments=5

@@ -9,20 +9,24 @@ public class People
 {
     // instance variables - replace the example below with your own
     private String description3;
-    private HashMap<String, People> Person;     
+    private String Name;    
     /**
      * Constructor for objects of class People     */
-    public People(String description)
+    public People(String Person, String description)
     {
         this.description3 = description3;
-        Person = new HashMap<String, People>();
+        this.Name = Person;
     }
-    public void setPeople(String name, People Desc)
+    public void setPeople(String Person)
     {
-        Person.put(name, Desc);
+        Name = Person;
     }
-    public People getPeople(String name)
+    public String getPeople()
     {
-        return Person.get(name);   
+        return Name;   
+    }
+    public String getPeopleDesc()
+    {
+        return description3;   
     }
 }

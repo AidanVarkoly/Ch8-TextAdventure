@@ -23,6 +23,10 @@ public class Room
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Item> Items;
     private ArrayList<People> Person;
+    private String itemInRoom;
+    private static String itemInRoomDesc;
+    private boolean searched = false;
+    private boolean spoke = false;
     // stores exits of this room.
     /**
      * Create a room described "description". Initially, it has
@@ -71,13 +75,42 @@ public class Room
      */
     public String getLongDescription()
     {
-      return "You are " + description + ".\n" + getExitString();
-    }
+        String temp = "";
+        temp += "You are " + description + ".\n" + getExitString() + "\n";
+      
+     if (searched)
+      { if (Items.size() > 0)
+       {
+         for (int i=0; i<Items.size(); i++) {
+           temp += "There is a(n) " + Items.get(i).getItemDescription() + " here\n"; 
+         }
+       }
+       else 
+       {
+         temp += "There is nothing else here.\n";    
+       }
+     }
+      if (spoke)
+      {
+        if (Person.size() > 0)
+        {
+          for (int p=0; p<Person.size(); p++) {
+              temp += "There is " + Person.get(p).getPeopleDesc() + "here\n"; 
+          }
+        }
+        else 
+        {
+         temp += "There is no'one in here.\n";   
+      }
+     }
+      return temp;
+    }    
     /**
      * Return a string describing the room's exits, for example
      * "Exits: north west".
      * @return Details of the room's exits.
      */
+
     private String getExitString()
     {
         String returnString = "Exits:";

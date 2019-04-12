@@ -6,7 +6,7 @@
  */
 public class Item
 {
-    private String description2;
+    private static String description2;
     private String name;
     public Item(String item, String description)
     {
@@ -20,6 +20,10 @@ public class Item
     public String getItem()
     {
         return name;
+    }
+    public static String getItemDescription()
+    {
+       return description2; 
     }
 }    
    

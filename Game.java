@@ -1,33 +1,33 @@
 import java.util.HashMap;
 /**
- The HamFather
- * This game is about you, a hamster, who tries to escape his domestic life 
- * to lead the rodent mafia of your dreams.
- * 
- * @author Isabella Dela Pena, Aidan Varkoly
- * @version 2019.04.04
- */
+The HamFather
+* This game is about you, a hamster, who tries to escape his domestic life 
+* to lead the rodent mafia of your dreams.
+* 
+* @author Isabella Dela Pena, Aidan Varkoly
+* @version 2019.04.04
+*/
 
-public class Game 
-{
-    private Parser parser;
-    private Room currentRoom;
-    private boolean searched = false;
-    private Item itemInRoom1;
-    private People personInRoom1;
+  public class Game 
+  {
+     private Parser parser;
+     private static Room currentRoom;
+     private boolean searched = false;
+     private Item itemInRoom1;
+     private People personInRoom1;
     /**
-     * Create the game and initialise its internal map.
-     */
-    public Game() 
-    {
+      * Create the game and initialise its internal map.
+      */
+        public Game() 
+       {
         createGame();
         parser = new Parser();
-    }
+       }
     /**
-     * Create all the rooms and link their exits together.
-     */
-    private void createGame()
-    {
+      * Create all the rooms and link their exits together.
+      */
+        public void createGame()
+       {
         Room cage, hamWheel, hamHouse, hamBowl, hamDoor;
         Room brokenVent, vent;
         Room humanRoom, bed, mirror, dresser;
@@ -140,20 +140,18 @@ public class Game
         cage.addItem(redpill);
         
         People James, Mary;
-        /**Mary = new People("Mary", "A nice Woman");
+        Mary = new People("Mary", "A nice Woman");
         James = new People("James", "Dude standing in the corner");
         
         cage.addPeople(James);
         ratCage.addPeople(Mary);
-        personInRoom1 = James;
-        **/
         currentRoom = cage;  // start game in the cage
-    }
+       }
     /**
-     *  Main play routine.  Loops until end of play.
-     */
-    public void play() 
-    {            
+      *  Main play routine.  Loops until end of play.
+      */
+        public void play() 
+       {            
         printWelcome();
 
         // Enter the main command loop.  Here we repeatedly read commands and
@@ -166,13 +164,12 @@ public class Game
         }
         System.out.println("Thank you for playing!");
         System.out.println("Goodbye.");
-    }
-
+       }
     /**
-     * Print out the opening message for the player.
-     */
-    private void printWelcome()
-    {
+      * Print out the opening message for the player.
+      */
+        private void printWelcome()
+       {
         System.out.println();
         System.out.println("The HamFather");
         System.out.println("-------------");
@@ -182,136 +179,131 @@ public class Game
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
-    }
-    /**
-     * Given a command, process (that is: execute) the command.
-     * @param command The command to be processed.
-     * @return true If the command ends the game, false otherwise.
-     */
-    private boolean processCommand(Command command) 
-    {
+       }
+     /**
+      * Given a command, process (that is: execute) the command.
+      * @param command The command to be processed.
+      * @return true If the command ends the game, false otherwise.
+      */
+        private boolean processCommand(Command command) 
+       {
         boolean wantToQuit = false;
         CommandWord commandWord = command.getCommandWord();
 
-        switch (commandWord) {
-            case UNKNOWN:
-                System.out.println("I don't know what you mean...");
-                break;
+        switch (commandWord) 
+        {
+         case UNKNOWN:
+         System.out.println("I don't know what you mean...");
+         break;
 
-            case HELP:
-                printHelp();
-                break;
+         case HELP:
+         printHelp();
+         break;
 
-            case GO:
-                goRoom(command);
-                break;
+         case GO:
+         goRoom(command);
+         break;
 
-            case QUIT:
-                wantToQuit = quit(command);
-                break;
+         case QUIT:
+         wantToQuit = quit(command);
+         break;
                 
-            /**
-                case PICKUP:
-                 pickUp(command);
-                 break;
-            */
-            case TALK:
-                 talkTo(command);
-                 break;
+         /**
+         case PICKUP:
+         pickUp(command);
+         break;
+         */
+         case TALK:
+         talkTo(command);
+         break;
 
-            case LOOK:
-                lookItem(command);
-                break;
-        }
-        return wantToQuit;
-    }
+         case LOOK:
+         lookItem(command);
+         break;
+       }
+       return wantToQuit;
+     }
 
-    // implementations of user commands:
+     // implementations of user commands:
 
-    /**
+     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
      */
-    private void printHelp() 
-    {
+       private void printHelp() 
+      {
         System.out.println("SAY HELLO TO MY LITTLE FRIENDS");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
-    }
+      }
 
-    /** 
+     /** 
      * Try to go in one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
      */
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
-            return;
-        }
+       private void goRoom(Command command) 
+      {
+       if(!command.hasSecondWord()) {
+         // if there is no second word, we don't know where to go...
+         System.out.println("Go where?");
+         return;
+       }
 
         String direction = command.getSecondWord();
 
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
 
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-        }
-    }
+       if (nextRoom == null) 
+       {
+         System.out.println("There is no door!");
+       }
+       else 
+       {
+         currentRoom = nextRoom;
+         System.out.println(currentRoom.getLongDescription());
+       }
+      }
 
-    /** 
+     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
      * @return true, if this command quits the game, false otherwise.
      */
-    private boolean quit(Command command) 
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        }
-        else {
-            return true;  // signal that we want to quit
-        }
-    }
-
-        private void talkTo(Command command)
-        {
-          if(!command.hasSecondWord())
-          {
-             System.out.println("WHOOO TF ARE YOU TRYING TO TALK TO YOU PSYCHOPATH"); 
-          }
-          String name = command.getSecondWord();
-          People person = personInRoom1.getPeople(name);
-          if(person == null)
-          {
-             System.out.println("There is no Person");
-          }
-          else
-          {
-             person = personInRoom1;
-          }
-        }
-        /**
-        * "Look" was entered.
-        */
-        private void lookItem(Command command)
-        {       
-        if(!command.hasSecondWord())
-        {
-            System.out.println("Where are you trying to look?");
-        }
-        if(currentRoom == null)
-        {
-            System.out.println("There is no item!");
-        }
-    }
+       private boolean quit(Command command) 
+      {
+       if(command.hasSecondWord()) {
+         System.out.println("Quit what?");
+         return false;
+       }
+       else
+       {
+         return true;  // signal that we want to quit
+       }
+      }
+     /**
+     * When "Talk" "Person" is entered it sets the value of
+     * spoke to true making getLongCommand() print.
+     */
+       private void talkTo(Command command)
+      {
+       if(!command.hasSecondWord())
+       {
+         System.out.println("WHOOO TF ARE YOU TRYING TO TALK TO YOU PSYCHOPATH"); 
+       }
+       
+      }
+     /**
+     * When "look" "Room" is entered it sets the value of
+     * search to true making getLongCommand() print.
+     */
+       private void lookItem(Command command)
+      {       
+       if(!command.hasSecondWord())
+       {
+         System.out.println("Where are you trying to look?");
+       }   
+      }
   }
