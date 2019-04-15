@@ -23,8 +23,6 @@ public class Room
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Item> Items;
     private ArrayList<People> Person;
-    private String itemInRoom;
-    private static String itemInRoomDesc;
     public static boolean searched = false;
     public static boolean spoke = false;
     // stores exits of this room.
@@ -93,13 +91,14 @@ public class Room
       {
         if (Person.size() > 0)
         {
-          for (int p=0; p<Person.size(); p++) {
-              temp += Person.get(p).getPeopleDesc() + "\n"; 
+          for (int p=0; p<Person.size(); p++) 
+          {
+              temp += People.getPeople() + ":" + Person.get(p).getPeopleDesc() + "\n";
           }
         }
         else 
         {
-         temp += "There is no'one in here.\n";   
+         temp += "There is noone in here.\n";   
         }
      }
         return temp;

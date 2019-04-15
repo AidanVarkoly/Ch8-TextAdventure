@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.ArrayList;
 /**
 The HamFather
 * This game is about you, a hamster, who tries to escape his domestic life 
@@ -12,10 +13,8 @@ The HamFather
   public class Game 
   {
      private Parser parser;
-     private static Room currentRoom;
-     private Item itemInRoom1;
-     private People personInRoom1;
-     private String currentRoom1;
+     public static Room currentRoom;
+     ArrayList<Item> inventory = new ArrayList<Item>();
     /**
       * Create the game and initialise its internal map.
       */
@@ -136,17 +135,9 @@ The HamFather
         
         ratCage.setExit("south", petStore);
         
-        Item redpill;
-        redpill = new Item("RedPill", "RedPill in the Medicine Cabinet");
-        cage.addItem(redpill);
-        
-        People James; 
-        People Mary;
-        James = new People("James", "Dude standing in the corner");
-        Mary = new People("Mary", "A nice Woman");
-        
-        cage.addPeople(James);
-        ratCage.addPeople(Mary);
+        Item RedPill;
+        RedPill = new Item("RedPill", "Kill Me");
+        cage.addItem(RedPill);
         currentRoom = cage;  // start game in the cage
        }
        /**
@@ -210,17 +201,20 @@ The HamFather
          wantToQuit = quit(command);
          break;
                 
-         /**
          case PICKUP:
          pickUp(command);
          break;
-         */
+        
          case TALK:
          talkTo(command);
          break;
 
          case LOOK:
          lookItem(command);
+         break;
+         
+         case GIVE:
+         giveItem(command);
          break;
        }
        return wantToQuit;
@@ -289,12 +283,13 @@ The HamFather
      * When "Talk" "Person" is entered it sets the value of
      * spoke to true making getLongCommand() print.
      */
-       private static void talkTo(Command command)
+       private void talkTo(Command command)
       {
        if(!command.hasSecondWord())
        {
          Room.spoke = true;
          System.out.println(currentRoom.getLongDescription());
+         Room.spoke = false;
        }
       }
      /**
@@ -307,6 +302,27 @@ The HamFather
        {
           Room.searched = true;
           System.out.println(currentRoom.getLongDescription());
+          Room.searched = false;
        }
+      }
+     /**
+     *  When the user types pickup and then the item it adds the item to their inventory and removes it from the room.
+     */  
+       private void pickUp(Command command)
+      {
+       if(!command.hasSecondWord())
+       {
+         System.out.println("Pick up what?");
+       }
+       {
+           
+       }
+      }
+      private void giveItem(Command command)
+      {
+         if(!command.hasSecondWord())
+         {
+             
+         }
       }
   }
