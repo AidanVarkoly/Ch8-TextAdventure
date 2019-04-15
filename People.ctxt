@@ -1,13 +1,15 @@
 #BlueJ class context
 comment0.target=People
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ People\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=Person\ description
-comment1.target=People(java.lang.String,\ java.lang.String)
+comment1.params=Person\ dialogue\ dialogue2
+comment1.target=People(java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.text=\r\nConstructor\ for\ objects\ of\ class\ People
 comment2.params=Person
 comment2.target=void\ setPeople(java.lang.String)
 comment3.params=
 comment3.target=java.lang.String\ getPeople()
 comment4.params=
-comment4.target=java.lang.String\ getPeopleDesc()
-numComments=5
+comment4.target=java.lang.String\ getDialogue()
+comment5.params=
+comment5.target=java.lang.String\ getDialogue2()
+numComments=6

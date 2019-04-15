@@ -7,14 +7,16 @@ import java.util.HashMap;
  */
 public class People
 {
-    // instance variables - replace the example below with your own
     private String description3;
-    private String Name;    
+    private String Name; 
+    private String dialogue;
+    private String dialogue2;
     /**
      * Constructor for objects of class People     */
-    public People(String Person, String description)
+    public People(String Person, String dialogue, String dialogue2)
     {
-        this.description3 = description3;
+        this.dialogue = dialogue;
+        this.dialogue2 = dialogue2;
         this.Name = Person;
     }
     public void setPeople(String Person)
@@ -25,8 +27,12 @@ public class People
     {
         return Name;   
     }
-    public String getPeopleDesc()
+    public String getDialogue()
     {
-        return description3;   
+        return dialogue;   
+    }
+    public String getDialogue2()
+    {
+        return dialogue2;
     }
 }
