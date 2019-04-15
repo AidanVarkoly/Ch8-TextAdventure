@@ -8,32 +8,31 @@ import java.util.ArrayList;
  */
 public class People
 {
-    // instance variables - replace the example below with your own
-    private String description3;
-    public static String Name;
-    public ArrayList<People> PeopleItems;
+    private String Name; 
+    private String dialogue;
+    private String dialogue2;
     /**
      * Constructor for objects of class People     */
-    public People(String Person, String description3)
+    public People(String Person, String dialogue, String dialogue2)
     {
-        this.description3 = description3;
+        this.dialogue = dialogue;
+        this.dialogue2 = dialogue2;
         this.Name = Person;
-        PeopleItems = new ArrayList<People>();
     }
     public void setPeople(String Person)
     {
         Name = Person;
     }
-    public static String getPeople()
+    public String getPeople()
     {
         return Name;   
     }
-    public void addItems(People aItem)
+    public String getDialogue()
     {
-       PeopleItems.add(aItem);
+        return dialogue;   
     }
-    public String getPeopleDesc()
+    public String getDialogue2()
     {
-        return description3;   
+        return dialogue2;
     }
 }

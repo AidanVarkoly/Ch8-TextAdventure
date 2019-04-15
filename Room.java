@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 /**
  * Class Room - a room in an adventure game.
  *
@@ -39,6 +38,7 @@ public class Room
         Items = new ArrayList<Item>();
         Person = new ArrayList<People>();
     }
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -48,14 +48,17 @@ public class Room
     {
         exits.put(direction, neighbor);
     }
+    
     public void addItem(Item aItem)
     {
         Items.add(aItem);
     }
+    
     public void addPeople(People aPerson)
     {
         Person.add(aPerson);   
     }
+    
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -87,13 +90,15 @@ public class Room
          temp += "There is nothing else here.\n";    
        }
      }
+     
      if (spoke)
       {
         if (Person.size() > 0)
         {
-          for (int p=0; p<Person.size(); p++) 
-          {
-              temp += People.getPeople() + ":" + Person.get(p).getPeopleDesc() + "\n";
+          for (int p=0; p<Person.size(); p++) {
+
+              temp += Person.get(p).getDialogue() + "\n" + Person.get(p).getDialogue2() ; 
+
           }
         }
         else 
@@ -103,6 +108,7 @@ public class Room
      }
         return temp;
     }    
+    
     /**
      * Return a string describing the room's exits, for example
      * "Exits: north west".
@@ -118,6 +124,7 @@ public class Room
         }
         return returnString;
     }
+    
     /**
      * Return the room that is reached if we go from this room in direction
      * "direction". If there is no room in that direction, return null.
