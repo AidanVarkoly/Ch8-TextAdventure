@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Scanner;
 /**
 The HamFather
 * This game is about you, a hamster, who tries to escape his domestic life 
@@ -12,9 +13,7 @@ The HamFather
   {
     private Parser parser;
     private static Room currentRoom;
-    private boolean searched = false;
-    private Item itemInRoom1;
-    private People personInRoom1;
+
     /**
       * Create the game and initialise its internal map.
       */
@@ -47,19 +46,19 @@ The HamFather
       //Escape routes//
       brokenVent = new Room("at the old shitty vent that smells " 
         + "like mothballs.");
-      vent = new Room ("at one of the vents. This one seems brand new. There is" +
-        " a raccoon with a crystal ball in her hands.");
+      vent = new Room ("at one of the vents. This one seems brand new.\nThere is" +
+        " a raccoon with a crystal ball in her hands");
         
       //In the Human Room//
       humanRoom = new Room("in the warden's room");
       bed = new Room("at the warden's bed. It looks comfy, but smells like" +
-        " socks and cheese puffs. There is a roach braiding his antenna hairs.");
+        " socks and cheese puffs. \nThere is a roach braiding his antenna hairs");
       mirror = new Room("at the mirror. You look handsome");
       dresser = new Room("at the dresser. You often see the warden keep " +
         "clothes and valuables here");
         
       //Vent - Bathroom//
-      ventDuct = new Room("in the vent duct. It's dusty as fuck. There's a "
+      ventDuct = new Room("in the vent duct. It's dusty as fuck.\nThere's a "
         + "rabid squirrel shaking by the vent wall.");
       bathroom = new Room("in the bathroom");
       toilet = new Room("on the toilet seat. It's gross.");
@@ -68,11 +67,11 @@ The HamFather
       medCab = new Room("at the medicine cabinet. You smell hemorrhoid cream");
         
       //Outside//
-      garden = new Room("outside where the warden grows flowers. There is small " +
-        "dormouse standing by the flowers.");
+      garden = new Room("outside where the warden grows flowers.\nThere is a small " +
+        "dormouse standing by the flowers");
       petStore = new Room("in the pet store where you were kidnapped");
-      ratCage = new Room("standing in front of RBG's lair. There's a bunch of " +
-        "tuff ass rodents standing by the cage door.");
+      ratCage = new Room("standing in front of RBG's lair.\nThere's a bunch of " +
+        "tuff ass rodents standing by the cage door");
         
       // EXITS 1: CAGE//
       cage.setExit("north", hamDoor);
@@ -122,6 +121,8 @@ The HamFather
         
       toilet.setExit("down", sewer);
       toilet.setExit("west", bathroom);
+      
+      sewer.setExit("up", toilet);
         
       medCab.setExit("north", bathroom);
        
@@ -153,7 +154,7 @@ The HamFather
       People dSnuts, coonani; 
       People roachard;
       People ratattoo;
-        
+       
       dSnuts = new People("dSnuts", "He shivers.\n" +
       "'I heard .. you was gonna be running a mafia. \nTell ya what- there's a freakin gun in the toilet.", 
       "'See, I told you. I have a feeling you didn't believe me.'");
@@ -179,6 +180,18 @@ The HamFather
       }
       
     /**
+=======
+        People James; 
+        People Mary;
+        James = new People("James", "Dude standing in the corner");
+        Mary = new People("Mary", "A nice Woman");
+        
+        cage.addPeople(James);
+        ratCage.addPeople(Mary);
+        currentRoom = cage;  // start game in the cage
+       }
+       /**
+>>>>>>> 11088c0532a5d0e60b383381d857d9da6d8ff96b
       *  Main play routine.  Loops until end of play.
       */
     public void play() 
@@ -244,13 +257,6 @@ The HamFather
          pickUp(command);
          break;
          */
-         case TALK:
-         talkTo(command);
-         break;
-
-         case LOOK:
-         lookItem(command);
-         break;
       }
       return wantToQuit;
     }
@@ -315,27 +321,4 @@ The HamFather
          return true;  // signal that we want to quit
       }
     }
-     /**
-     * When "Talk" "Person" is entered it sets the value of
-     * spoke to true making getLongCommand() print.
-     */
-    private void talkTo(Command command)
-    {
-       if(!command.hasSecondWord())
-       {
-         System.out.println("WHOOO TF ARE YOU TRYING TO TALK TO YOU PSYCHOPATH"); 
-       }
-       
-    }
-     /**
-     * When "look" "Room" is entered it sets the value of
-     * search to true making getLongCommand() print.
-     */
-    private void lookItem(Command command)
-    {       
-       if(!command.hasSecondWord())
-       {
-         System.out.println("Where are you trying to look?");
-       }   
-    }
-  }
+}
