@@ -11,7 +11,7 @@ public enum CommandWord
     // corresponding user interface string.
 
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), LOOK("look"),TALK("talk"),
-    PICKUP("pickup"), GIVE("give");
+    PICKUP("pickup"), INVENTORY("inventory"), FIGHT("fight");
 
     
     // The command string.

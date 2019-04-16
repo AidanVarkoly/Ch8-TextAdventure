@@ -1,30 +1,30 @@
 import java.util.Set;
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
  *
- * This class is part of the "The HamFather" application. 
+ * This class is part of the "World of Zuul" application. 
+ * "World of Zuul" is a very simple, text based adventure game.  
  *
  * A "Room" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author Isabella Dela Pena and Aidan Varkoly
- * @version 2019.04.08
+ * @author  Michael Kölling and David J. Barnes
+ * @version 2011.08.10
  */
 
 public class Room 
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private ArrayList<Item> Items;
-    private ArrayList<People> Person;
+    public ArrayList<Items> items;
+    private ArrayList<People> people;
     public static boolean searched = false;
     public static boolean spoke = false;
-    // stores exits of this room.
+    public static boolean spoke2 = true;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -35,10 +35,10 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<String, Room>();
-        Items = new ArrayList<Item>();
-        Person = new ArrayList<People>();
+        items = new ArrayList<Items>();
+        people = new ArrayList<People>();
     }
-    
+
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -48,17 +48,7 @@ public class Room
     {
         exits.put(direction, neighbor);
     }
-    
-    public void addItem(Item aItem)
-    {
-        Items.add(aItem);
-    }
-    
-    public void addPeople(People aPerson)
-    {
-        Person.add(aPerson);   
-    }
-    
+
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -67,6 +57,7 @@ public class Room
     {
         return description;
     }
+
     /**
      * Return a description of the room in the form:
      *     You are in the kitchen.
@@ -75,46 +66,51 @@ public class Room
      */
     public String getLongDescription()
     {
-        String temp = "";
-        temp += "You are " + description + ".\n" + getExitString() + "\n";
-      
-     if (searched)
-      { if (Items.size() > 0)
-       {
-         for (int i=0; i<Items.size(); i++) {
-           temp += "There is a(n) " + Items.get(i).getItemDescription() + " here\n"; 
-         }
+        String output = "";
+        output += "You are " + description + ".\n" + getExitString() + "\n";
+     if (spoke2)
+      {
+      if(people.size() > 0)
+       {   
+       for (int p = 0; p<people.size(); p++)
+       {    
+         output += people.get(p).getPeople() + ": " + people.get(p).getDialogue();
        }
-       else 
-       {
-         temp += "There is nothing else here.\n";    
        }
-     }
-     
+      }
      if (spoke)
       {
-        if (Person.size() > 0)
-        {
-          for (int p=0; p<Person.size(); p++) {
-
-              temp += Person.get(p).getDialogue() + "\n" + Person.get(p).getDialogue2() ; 
-
-          }
-        }
-        else 
-        {
-         temp += "There is noone in here.\n";   
-        }
-     }
-        return temp;
-    }    
+       if(people.size() > 0)
+       {   
+         for (int p = 0; p<people.size(); p++)
+         {    
+           output += "\n" + people.get(p).getDialogue2();
+         }
+       }
+      }
+     if (searched)
+      {
+       if(items.size() > 0)
+       {   
+       for (int i = 0; i<items.size(); i++)
+       {    
+         output += "There is " + items.get(i).getDescription() + " here\n";
+       }
+       }
+       else 
+       { 
+         output += "\nThere are no items in here!"; 
+       }
+      }
+      return output;
+    }
     
+
     /**
      * Return a string describing the room's exits, for example
      * "Exits: north west".
      * @return Details of the room's exits.
      */
-
     private String getExitString()
     {
         String returnString = "Exits:";
@@ -122,9 +118,68 @@ public class Room
         for(String exit : keys) {
             returnString += " " + exit;
         }
+        
         return returnString;
     }
-    
+    public Items getItems(int index)
+    {
+       return items.get(index);   
+    }
+    public Items getItems(String itemName)
+    {
+       for (int i = 0; i < items.size(); i++)
+       {
+           if (items.get(i).getItem().equals(itemName));
+           {
+             return items.get(i);  
+           }
+       }
+       return null;
+    }
+    public People getPeople(int index)
+    {
+       return people.get(index);   
+    }
+    public People getPeople(String Name)
+    {
+       for (int p = 0; p < people.size(); p++)
+       {
+           if (people.get(p).getPeople().equals(Name))
+           {
+             return people.get(p);  
+           }
+       }
+       return null;
+    }
+    public People getPeople2(String Name)
+    {
+       for (int p = 0; p < people.size(); p++)
+       {
+           if (people.get(p).getPeople().equals(Name))
+           {
+             return people.get(p);  
+           }
+       }
+       return null;
+    }
+    public void removeItem(String itemName)
+    {
+       for (int i = 0; i < items.size(); i++)
+       {
+           if (items.get(i).getDescription().equals(itemName))
+           {
+             items.remove(i);
+           }
+    }
+}
+    public void addItems(Items newItem)
+    {
+       items.add(newItem);   
+    }
+    public void addPeople(People newPerson)
+    {
+       people.add(newPerson);   
+    }
     /**
      * Return the room that is reached if we go from this room in direction
      * "direction". If there is no room in that direction, return null.
@@ -136,5 +191,4 @@ public class Room
         return exits.get(direction);
     }
 }
-
 

@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.ArrayList;
+
 /**
  * Write a description of class People here.
  *
@@ -8,6 +7,7 @@ import java.util.ArrayList;
  */
 public class People
 {
+    // instance variables - replace the example below with your own
     private String Name; 
     private String dialogue;
     private String dialogue2;
